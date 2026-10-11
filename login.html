@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Log in – QuizHub</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/forms.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html">Quiz<span>Hub</span></a>
+    </div>
+  </header>
+  <main class="container">
+    <div class="card form-card">
+      <div id="message"></div>
+
+      <div id="loginView">
+        <h1>Welcome back</h1>
+        <p class="sub">Log in to your QuizHub account.</p>
+        <form id="loginForm">
+          <div class="field"><label for="email">Email</label>
+            <input id="email" type="email" autocomplete="email" required></div>
+          <div class="field"><label for="password">Password</label>
+            <input id="password" type="password" autocomplete="current-password" required></div>
+          <button class="btn btn-primary" id="submitBtn" type="submit">Log in</button>
+        </form>
+        <p class="form-foot"><a href="#" id="resetLink">Forgot your password?</a></p>
+        <p class="form-foot">New here? <a href="register.html">Create an account</a></p>
+      </div>
+
+      <div id="loggedInView" style="display:none">
+        <h1>You are logged in</h1>
+        <p class="sub" id="whoami"></p>
+        <a class="btn btn-teal" href="index.html">Go to homepage</a>
+        <p style="height:10px"></p>
+        <button class="btn btn-outline" id="logoutBtn" type="button">Log out</button>
+      </div>
+    </div>
+  </main>
+  <script type="module" src="js/login.js"></script>
+</body>
+</html>
