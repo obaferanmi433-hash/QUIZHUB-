@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create quiz – QuizHub</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/forms.css">
+  <style>
+    .wide{max-width:640px}
+    .field textarea,.field select{width:100%;padding:12px 14px;border:1px solid var(--border);
+      border-radius:12px;font-size:1rem;font-family:inherit;background:#fff}
+    .field textarea{min-height:90px;resize:vertical}
+    .field textarea:focus,.field select:focus{outline:2px solid var(--blue);border-color:transparent}
+    .hint{font-size:.85rem;color:var(--muted);margin-top:4px}
+    fieldset{border:1px solid var(--border);border-radius:14px;padding:14px;margin-bottom:16px}
+    legend{font-weight:700;padding:0 6px}
+    .check{display:flex;gap:10px;align-items:flex-start;margin:10px 0}
+    .check input{width:20px;height:20px;margin-top:3px;flex:none}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html">Quiz<span>Hub</span></a>
+    </div>
+  </header>
+  <main class="container">
+    <div class="card form-card wide">
+      <p class="sub" id="status">Checking your login...</p>
+      <div id="content" style="display:none">
+        <h1>Create a quiz</h1>
+        <p class="sub">Fill in the details. You will add questions next.</p>
+        <div id="message"></div>
+        <form id="quizForm">
+          <fieldset>
+            <legend>Basics</legend>
+            <div class="field"><label for="title">Quiz title</label>
+              <input id="title" type="text" maxlength="120" required></div>
+            <div class="field"><label for="description">Description</label>
+              <textarea id="description" maxlength="500"></textarea></div>
+            <div class="field"><label for="subject">Subject</label>
+              <input id="subject" type="text" list="subjectList" maxlength="50"
+                placeholder="Type any subject, e.g. Further Maths" required>
+              <datalist id="subjectList">
+                <option value="Mathematics">
+                <option value="English">
+                <option value="Physics">
+                <option value="Chemistry">
+                <option value="Biology">
+                <option value="Computer Science">
+                <option value="Economics">
+                <option value="Government">
+                <option value="History">
+                <option value="Geography">
+                <option value="General Knowledge">
+              </datalist>
+              <p class="hint">Pick a suggestion or type your own.</p></div>
+            <div class="field"><label for="difficulty">Difficulty</label>
+              <select id="difficulty">
+                <option value="easy">Easy</option>
+                <option value="medium" selected>Medium</option>
+                <option value="hard">Hard</option>
+              </select></div>
+            <div class="field"><label for="instructions">Instructions for students</label>
+              <textarea id="instructions" maxlength="1000"></textarea></div>
+          </fieldset>
+
+          <fieldset>
+            <legen
