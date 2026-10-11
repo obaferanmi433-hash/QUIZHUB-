@@ -24,7 +24,7 @@
       });
       const r = await fetch("./js/login.js?v=" + Date.now());
       const txt = await r.text();
-      log("5. login.js is the new version: " + txt.includes("checking.style.display"));
+            log("5. login.js length: " + txt.length + "\n\nSTART:\n" + txt.slice(0, 400) + "\n\nEND:\n" + txt.slice(-300));
     } catch (e) {
       log("FAILED: " + e.name + ": " + e.message);
     }
