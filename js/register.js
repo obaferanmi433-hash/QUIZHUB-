@@ -1,4 +1,5 @@
 import { auth } from "./firebase.js";
+import { ensureProfile } from "./profile.js";
 import { createUserWithEmailAndPassword, updateProfile }
   from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
 
@@ -40,6 +41,7 @@ form.addEventListener("submit", async (e) => {
   try {
     const cred = await createUserWithEmailAndPassword(auth, email, password);
     await updateProfile(cred.user, { displayName: name });
+        await ensureProfile(cred.user);
     show("Account created! Taking you to the homepage...", "success");
     setTimeout(() => { window.location.href = "index.html"; }, 1500);
   } catch (err) {
