@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>QuizHub check</title>
+</head>
+<body style="font-family:sans-serif;padding:16px">
+  <h2>QuizHub check</h2>
+  <pre id="out" style="white-space:pre-wrap;font-size:15px">Page loaded. Running checks...</pre>
+  <script type="module">
+    const out = document.getElementById("out");
+    const log = (m) => { out.textContent += "\n\n" + m; };
+    window.addEventListener("error", (e) => log("ERROR: " + e.message));
+    try {
+      const m = await import("./js/firebase.js?v=" + Date.now());
+      log("1. firebase.js loaded OK. Project: " + m.app.options.projectId);
+      const a = await import("https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js");
+      log("2. Firebase auth library loaded OK.");
+      const t = setTimeout(() => log("4. PROBLEM: Firebase did not answer in 8 seconds."), 8000);
+      a.onAuthStateChanged(m.auth, (u) => {
+        clearTimeout(t);
+        log("3. Firebase answered. Logged in: " + (u ? u.email : "no"));
+      });
+      const r = await fetch("./js/login.js?v=" + Date.now());
+      const txt = await r.text();
+      log("5. login.js is the new version: " + txt.includes("checking.style.display"));
+    } catch (e) {
+      log("FAILED: " + e.name + ": " + e.message);
+    }
+  </script>
+</body>
+</html>
