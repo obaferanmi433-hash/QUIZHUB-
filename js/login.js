@@ -34,7 +34,6 @@ function friendly(code) {
 onAuthStateChanged(auth, (user) => {
   document.getElementById("checking").style.display = "none";
   if (user) {
-  if (user) {
     loginView.style.display = "none";
     loggedInView.style.display = "block";
     whoami.textContent = "Signed in as " + (user.displayName || user.email);
