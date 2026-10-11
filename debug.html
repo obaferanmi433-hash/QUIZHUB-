@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Profile check</title>
+</head>
+<body style="font-family:sans-serif;padding:16px">
+  <h2>Profile check</h2>
+  <pre id="out" style="white-space:pre-wrap;font-size:15px">Running...</pre>
+  <script type="module">
+    const out = document.getElementById("out");
+    const log = (m) => { out.textContent += "\n\n" + m; };
+    try {
+      const { auth, db } = await import("./js/firebase.js?v=" + Date.now());
+      log("1. firebase.js OK. Project: " + auth.app.options.projectId);
+      const A = await import("https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js");
+      const F = await import("https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js");
+      A.onAuthStateChanged(auth, async (user) => {
+        if (!user) return log("2. Not logged in. Log in first, then reopen this page.");
+        log("2. Logged in as: " + user.email + "\nUser ID: " + user.uid);
+        try {
+          const ref = F.doc(db, "users", user.uid);
+          const snap = await F.getDoc(ref);
+          log("3. Read OK. Profile exists: " + snap.exists());
+          if (!snap.exists()) {
+            await F.setDoc(ref, {
+              displayName: (user.displayName || "Student").slice(0, 50),
+              bio: "",
+              photoURL: "",
+              createdAt: F.serverTimestamp(),
+              updatedAt: F.serverTimestamp()
+            });
+            log("4. Profile WRITTEN successfully.");
+          }
+        } catch (e) {
+          log("FIRESTORE ERROR: " + e.code + "\n" + e.message);
+        }
+      });
+    } catch (e) {
+      log("FAILED: " + e.name + ": " + e.message);
+    }
+  </script>
+</body>
+  </html>
