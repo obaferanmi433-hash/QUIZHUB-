@@ -54,9 +54,10 @@ form.addEventListener("submit", async (e) => {
     await signInWithEmailAndPassword(
       auth,
       document.getElementById("email").value.trim(),
-      document.getElementById("password").value
+            document.getElementById("password").value
     );
     box.innerHTML = "";
+    window.location.href = "dashboard.html";
   } catch (err) {
     show(friendly(err.code), "error");
   }
