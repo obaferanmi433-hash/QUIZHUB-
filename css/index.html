@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QuizHub – Create and take quizzes</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html">Quiz<span>Hub</span></a>
+      <input type="checkbox" id="menu-toggle" class="menu-toggle">
+      <label for="menu-toggle" class="menu-btn">☰</label>
+      <nav class="nav-links">
+        <a class="active" href="index.html">Home</a>
+        <a href="#quizzes">Explore</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>Learn, practise and test yourself</h1>
+        <p>Take quizzes made by other students and teachers, or create your own and share them.</p>
+        <div class="search">
+          <input type="search" placeholder="Search quizzes..." aria-label="Search quizzes">
+          <button class="btn btn-primary" type="button">Search</button>
+        </div>
+        <div class="hero-actions">
+          <a class="btn btn-teal" href="#quizzes">Explore quizzes</a>
+          <a class="btn btn-outline" href="#quizzes">Create a quiz</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="categories">
+      <div class="container">
+        <h2>Subjects</h2>
+        <div class="card empty"><strong>No subjects yet</strong>Subjects will appear here once quizzes are published.</div>
+      </div>
+    </section>
+
+    <section class="section" id="quizzes">
+      <div class="container">
+        <h2>Featured quizzes</h2>
+        <div class="card empty"><strong>No quizzes yet</strong>Published quizzes will show here.</div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">© QuizHub</footer>
+</body>
+</html>
