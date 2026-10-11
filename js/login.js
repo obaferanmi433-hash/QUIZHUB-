@@ -1,4 +1,5 @@
 import { auth } from "./firebase.js";
+import { ensureProfile } from "./profile.js";
 import {
   signInWithEmailAndPassword, onAuthStateChanged,
   signOut, sendPasswordResetEmail
@@ -34,7 +35,8 @@ function friendly(code) {
 
 onAuthStateChanged(auth, (user) => {
   checking.style.display = "none";
-  if (user) {
+    if (user) {
+    ensureProfile(user);
     loginView.style.display = "none";
     loggedInView.style.display = "block";
     whoami.textContent = "Signed in as " + (user.displayName || user.email);
