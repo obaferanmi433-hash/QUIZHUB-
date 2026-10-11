@@ -1,6 +1,7 @@
 import { auth } from "./firebase.js";
 import { onAuthStateChanged, signOut }
   from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
+import { ensureProfile } from "./profile.js";
 
 const loginLink = document.getElementById("navLogin");
 const registerLink = document.getElementById("navRegister");
@@ -12,6 +13,7 @@ onAuthStateChanged(auth, (user) => {
     registerLink.style.display = "none";
     logoutLink.style.display = "block";
     logoutLink.textContent = "Log out (" + (user.displayName || "you") + ")";
+    ensureProfile(user);
   } else {
     loginLink.style.display = "block";
     registerLink.style.display = "block";
