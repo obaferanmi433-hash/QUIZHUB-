@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quiz page check</title>
+</head>
+<body style="font-family:sans-serif;padding:16px">
+  <h2>Quiz page check</h2>
+  <pre id="out" style="white-space:pre-wrap;font-size:15px">Running...</pre>
+  <script type="module">
+    const out = document.getElementById("out");
+    const log = (m) => { out.textContent += "\n\n" + m; };
+    const t = Date.now();
+
+    async function tryImport(name, url) {
+      try { await import(url); log("OK: " + name); }
+      catch (e) { log("FAILED: " + name + "\n" + e.name + ": " + e.message); }
+    }
+
+    await tryImport("firebase.js", "./js/firebase.js?v=" + t);
+    await tryImport("guard.js", "./js/guard.js?v=" + t);
+    await tryImport("profile.js", "./js/profile.js?v=" + t);
+
+    try {
+      const r = await fetch("./create-quiz.html?v=" + t);
+      const h = await r.text();
+      log("create-quiz.html status: " + r.status);
+      const ids = ["status","content","message","quizForm","saveBtn","title","subject",
+        "description","difficulty","instructions","duration","attemptLimit",
+        "shuffleQuestions","shuffleOptions","access","showScore","reviewAnswers",
+        "showExplanations","leaderboard","resultRelease"];
+      const missing = ids.filter(i => !h.includes('id="' + i + '"'));
+      log("Missing element ids: " + (missing.length ? missing.join(", ") : "none"));
+      const m = h.match(/<script type="module"[^>]*>/);
+      log("Script line: " + (m ? m[0] : "NOT FOUND"));
+    } catch (e) {
+      log("FAILED reading create-quiz.html: " + e.message);
+    }
+  </script>
+</body>
+</html>
