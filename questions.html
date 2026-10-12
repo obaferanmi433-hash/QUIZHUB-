@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Questions – QuizHub</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/forms.css">
+  <style>
+    .wide{max-width:640px}
+    h2{font-size:1.15rem;margin:16px 0 8px}
+    .hint{font-size:.85rem;color:var(--muted)}
+    .rt{min-height:44px;padding:10px 12px;border:1px solid var(--border);border-radius:12px;background:#fff;font-size:1rem}
+    .rt:focus{outline:2px solid var(--blue);border-color:transparent}
+    .rt:empty:before{content:attr(data-ph);color:var(--muted)}
+    .tools{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0;position:sticky;top:56px;background:#fff;padding:6px 0;z-index:5}
+    .tools button{padding:8px 12px;border:1px solid var(--border);border-radius:10px;background:#f1f5f9;font-size:1rem;min-width:40px}
+    .opt{display:flex;gap:10px;align-items:center;margin-bottom:10px}
+    .opt input{width:22px;height:22px;flex:none}
+    .opt .rt{flex:1}
+    .qrow{border:1px solid var(--border);border-radius:12px;padding:12px;margin-bottom:10px}
+    .qrow .btn{margin-top:8px;padding:8px 14px;width:auto}
+    .quizlink{display:block;padding:12px 14px;border:1px solid var(--border);border-radius:12px;margin-bottom:10px;font-weight:600}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html">Quiz<span>Hub</span></a>
+    </div>
+  </header>
+  <main class="container">
+    <div class="card form-card wide">
+      <p class="sub" id="status">Checking your login...</p>
+      <div id="content" style="display:none">
+        <div id="message"></div>
+        <div id="picker" style="display:none">
+          <h1>Choose a quiz</h1>
+          <div id="quizList"></div>
+        </div>
+        <div id="editor" style="display:none">
+          <h1 id="quizTitle"></h1>
+          <p class="sub" id="quizInfo"></p>
+          <h2>Questions</h2>
+          <div id="qList"></div>
+          <h2>Add a question</h2>
+          <div class="tools" id="toolbar">
+            <button type="button" data-cmd="bold"><b>B</b></button>
+            <button type="button" data-cmd="italic"><i>I</i></button>
+            <button type="button" data-cmd="underline"><u>U</u></button>
+            <button type="button" data-cmd="superscript">x²</button>
+            <button type="button" data-cmd="subscript">x₂</button>
+            <button type="button" data-cmd="insertUnorderedList">• List</button>
+            <button type="button" data-cmd="insertOrderedList">1. List</button>
+            <button type="button" data-cmd="removeFormat">Clear</button>
+          </div>
+          <form id="addForm">
+            <div class="field"><label>Question</label>
+              <div class="rt" id="qText" contenteditable="true" data-ph="Type the question"></div></div>
+            <label>Options (tap the circle beside the correct one)</label>
+            <div class="opt"><input type="radio" name="correct" value="0"><div class="rt" contenteditable="true" data-ph="Option A"></div></div>
+            <div class="opt"><input type="radio" name="correct" value="1"><div class="rt" contenteditable="true" data-ph="Option B"></div></div>
+            <div class="opt"><input type="radio" name="correct" value="2"><div class="rt" contenteditable="true" data-ph="Option C (optional)"></div></div>
+            <div class="opt"><input type="radio" name="correct" value="3"><div class="rt" contenteditable="true" data-ph="Option D (optional)"></div></div>
+            <div class="field"><label for="marks">Marks</label>
+              <input id="marks" type="number" min="1" max="100" value="1"></div>
+            <div class="field"><label>Explanation (optional)</label>
+              <div class="rt" id="explanation" contenteditable="true" data-ph="Why is this the answer?"></div></div>
+            <button class="btn btn-primary" id="addBtn" type="submit">Save question</button>
+          </form>
+          <p class="form-foot"><a href="questions.html">Choose another quiz</a></p>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script type="module" src="js/questions.js"></script>
+</body>
+</html>
