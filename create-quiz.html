@@ -66,3 +66,48 @@
             <div class="field"><label for="instructions">Instructions for students</label>
               <textarea id="instructions" maxlength="1000"></textarea></div>
           </fieldset>
+          <fieldset>
+            <legend>Time and attempts</legend>
+            <div class="row">
+              <div class="field"><label for="duration">Duration (minutes)</label>
+                <input id="duration" type="number" min="1" max="300" value="20" required></div>
+              <div class="field"><label for="attemptLimit">Attempts allowed</label>
+                <input id="attemptLimit" type="number" min="0" max="50" value="1" required></div>
+            </div>
+            <p class="hint">Attempts allowed: 0 means unlimited.</p>
+            <label class="check"><input type="checkbox" id="shuffleQuestions" checked> Shuffle the order of questions</label>
+            <label class="check"><input type="checkbox" id="shuffleOptions" checked> Shuffle the answer options</label>
+          </fieldset>
+
+          <fieldset>
+            <legend>Access</legend>
+            <div class="field"><label for="access">Who can take this quiz?</label>
+              <select id="access">
+                <option value="public">Public (anyone logged in, once published)</option>
+                <option value="restricted">Restricted (only you can see it for now)</option>
+              </select></div>
+            <p class="hint">Sharing a restricted quiz with chosen people comes in a later stage.</p>
+          </fieldset>
+
+          <fieldset>
+            <legend>Results</legend>
+            <label class="check"><input type="checkbox" id="showScore" checked> Show the score to students</label>
+            <label class="check"><input type="checkbox" id="reviewAnswers"> Let students review their answers</label>
+            <label class="check"><input type="checkbox" id="showExplanations"> Show explanations in the review</label>
+            <label class="check"><input type="checkbox" id="leaderboard" checked> Include attempts in the leaderboard</label>
+            <div class="field"><label for="resultRelease">When do results appear?</label>
+              <select id="resultRelease">
+                <option value="immediately">Immediately after submitting</option>
+                <option value="manual">When I release them</option>
+              </select></div>
+          </fieldset>
+
+          <button class="btn btn-primary" id="saveBtn" type="submit">Save as draft</button>
+        </form>
+        <p class="form-foot"><a href="dashboard.html">Back to dashboard</a></p>
+      </div>
+    </div>
+  </main>
+  <script type="module" src="js/create-quiz.js?v=2"></script>
+</body>
+</html>
