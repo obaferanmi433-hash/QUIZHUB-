@@ -73,7 +73,7 @@ requireLogin(async (user) => {
         createdAt: serverTimestamp(),
         updatedAt: serverTimestamp()
       });
-      show("Draft saved! Quiz ID: " + ref.id + ". Adding questions comes in the next step.", "success");
+            window.location.href = "questions.html?quiz=" + ref.id;
       form.reset();
     } catch (err) {
       console.error(err);
